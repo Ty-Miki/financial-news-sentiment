@@ -45,6 +45,21 @@ I use the **Financial News and Stock Price Integration Dataset (FNSPID)**, which
 
 ## 🧱 Folder Structure
 
+.
+├── LICENSE
+├── notebooks
+│   ├── __init__.py
+│   └── README.md
+├── README.md
+├── requirements.txt
+├── scripts
+│   ├── __init__.py
+│   └── README.md
+├── tests
+│   └── __init__.py
+└── tree.txt
+
+4 directories, 9 files
 --- 
 
 ## ⚙️ Setup Instructions
