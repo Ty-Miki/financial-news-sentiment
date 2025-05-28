@@ -13,7 +13,7 @@ This repository is part of a multi-phase analysis project to:
 
 ## 📊 Dataset
 
-We use the **Financial News and Stock Price Integration Dataset (FNSPID)**, which contains:
+I use the **Financial News and Stock Price Integration Dataset (FNSPID)**, which contains:
 - `headline`: Title of the news article.
 - `url`: Link to the full article.
 - `publisher`: Publisher name or email domain.
@@ -44,4 +44,33 @@ We use the **Financial News and Stock Price Integration Dataset (FNSPID)**, whic
 ---
 
 ## 🧱 Folder Structure
+
+--- 
+
+## ⚙️ Setup Instructions
+
+```bash
+git clone https://github.com/your-username/financial-news-sentiment.git
+cd financial-news-sentiment
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+--- 
+
+## 🧪 Testing
+
+```bash
+python -m unittest discover tests
+```
+
+--- 
+
+## 📌 Project Status
+
+- Task 1: Environment Setup & EDA – ✅ In Progress
+- Task 2: Setiment analysis – ⏳ Upcoming
+- Task 3: Correlation Modeling – ⏳ Upcoming
+
 
