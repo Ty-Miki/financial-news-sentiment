@@ -38,3 +38,30 @@ class PlotGenerator:
 
         except Exception as e:
             logging.error(f"Failed to display histogram for column '{column}': {e}")
+
+    def plot_ranked_bar_chart(self, df: pd.DataFrame, x_col: str, y_col: str, title: str, xlabel: str, ylabel: str, top_n: int = 20):
+        """
+        Plots a ranked bar chart.
+
+        Args:
+            df (pd.DataFrame): DataFrame with counts.
+            x_col (str): X-axis column (e.g., publisher).
+            y_col (str): Y-axis column (e.g., count).
+            title (str): Title of the chart.
+            xlabel (str): Label for x-axis.
+            ylabel (str): Label for y-axis.
+            top_n (int): Number of top rows to display.
+        """
+        try:
+            top_df = df.nlargest(top_n, y_col)
+            plt.figure(figsize=(12, 6))
+            sns.barplot(data=top_df, x=x_col, y=y_col)
+            plt.title(title)
+            plt.xlabel(xlabel)
+            plt.ylabel(ylabel)
+            plt.xticks(rotation=45, ha='right')
+            plt.tight_layout()
+            plt.show()
+            logging.info(f"Plotted ranked bar chart for top {top_n} items by {y_col}")
+        except Exception as e:
+            logging.error(f"Error plotting ranked bar chart: {e}")

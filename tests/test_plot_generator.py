@@ -40,3 +40,26 @@ def test_plot_histogram_invalid_column(monkeypatch, sample_df, caplog):
     )
 
     assert "Column 'nonexistent_column' not found in DataFrame." in caplog.text
+
+@pytest.fixture
+def publisher_counts_df():
+    return pd.DataFrame({
+        'publisher': ['A', 'B', 'C', 'D'],
+        'article_count': [100, 150, 120, 90]
+    })
+
+def test_plot_ranked_bar_chart_runs(publisher_counts_df):
+    plotter = PlotGenerator()
+    
+    try:
+        plotter.plot_ranked_bar_chart(
+            df=publisher_counts_df,
+            x_col='publisher',
+            y_col='article_count',
+            title='Test Plot',
+            xlabel='Publisher',
+            ylabel='Articles',
+            top_n=3
+        )
+    except Exception as e:
+        pytest.fail(f"Plotting failed with error: {e}")
