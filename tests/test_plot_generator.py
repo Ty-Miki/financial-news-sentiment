@@ -1,4 +1,5 @@
 import pytest
+from unittest.mock import patch
 import pandas as pd
 from scripts.plot_generator import PlotGenerator
 import matplotlib.pyplot as plt
@@ -27,6 +28,7 @@ def test_plot_histogram_valid_column(monkeypatch, sample_df):
     except Exception as e:
         pytest.fail(f"plot_histogram raised an exception: {e}")
 
+@patch("matplotlib.pyplot.show")
 def test_plot_histogram_invalid_column(monkeypatch, sample_df, caplog):
     plotter = PlotGenerator()
 
@@ -48,7 +50,8 @@ def publisher_counts_df():
         'article_count': [100, 150, 120, 90]
     })
 
-def test_plot_ranked_bar_chart_runs(publisher_counts_df):
+@patch("matplotlib.pyplot.show")
+def test_plot_ranked_bar_chart(publisher_counts_df):
     plotter = PlotGenerator()
     
     try:
@@ -63,3 +66,19 @@ def test_plot_ranked_bar_chart_runs(publisher_counts_df):
         )
     except Exception as e:
         pytest.fail(f"Plotting failed with error: {e}")
+
+@pytest.fixture
+def ts_data():
+    return pd.DataFrame({
+        'published_date': pd.date_range(start='2024-01-01', periods=10, freq='D'),
+        'article_count': [5, 7, 6, 4, 8, 10, 3, 6, 7, 9]
+    })
+
+@patch("matplotlib.pyplot.show")
+def test_plot_time_series(ts_data):
+    plotter = PlotGenerator()
+
+    try:
+        plotter.plot_time_series(ts_data, 'published_date', 'article_count', title="Test Time Series")
+    except Exception as e:
+        pytest.fail(f"plot_time_series raised an exception: {e}")

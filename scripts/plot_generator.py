@@ -65,3 +65,17 @@ class PlotGenerator:
             logging.info(f"Plotted ranked bar chart for top {top_n} items by {y_col}")
         except Exception as e:
             logging.error(f"Error plotting ranked bar chart: {e}")
+
+    def plot_time_series(self, df: pd.DataFrame, date_column: str, value_column: str, title: str = "Time Series", xlabel: str = "Date", ylabel: str = "Count"):
+        try:
+            plt.figure(figsize=(12, 6))
+            plt.plot(df[date_column], df[value_column], marker='o', linestyle='-')
+            plt.title(title)
+            plt.xlabel(xlabel)
+            plt.ylabel(ylabel)
+            plt.grid(True)
+            plt.tight_layout()
+            plt.show()
+            logging.info(f"Time series plot generated for '{value_column}' over '{date_column}'")
+        except Exception as e:
+            logging.error(f"Error plotting time series: {e}")
