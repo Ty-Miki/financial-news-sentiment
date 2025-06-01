@@ -7,3 +7,8 @@ exclude = '''
   | \.venv
 )/
 '''
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::UserWarning:spacy.pipeline.lemmatizer"
+]
