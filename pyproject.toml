@@ -12,3 +12,4 @@ filterwarnings = [
     "ignore::DeprecationWarning",
     "ignore::UserWarning:spacy.pipeline.lemmatizer"
 ]
+TA-Lib = "^0.6.3"
